@@ -94,7 +94,7 @@ export function ProfileDesktop() {
                     placeholder="Email" 
                     icon={FiMail}
                     value={email}
-                    onChange={e => setName(e.target.value)}
+                    onChange={e => setEmail(e.target.value)}
                 />
 
                 <Input
