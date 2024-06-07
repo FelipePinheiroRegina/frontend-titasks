@@ -13,6 +13,7 @@ import { api } from "../../services/api"
 export function HomeDesktop() {
     const [ title, setTitle ] = useState('')
     const [ status, setStatus ] = useState('')
+    const [ date, setDate ] = useState('')
     const [ tasks, setTasks ] = useState([])
     
     const navigate = useNavigate()
@@ -31,13 +32,13 @@ export function HomeDesktop() {
 
     useEffect(() => {
         async function fetchTasks() {
-            const response = await api.get(`/tasks?title=${title}&status=${status}`)
+            const response = await api.get(`/tasks?title=${title}&status=${status}&date=${date}`)
 
             setTasks(response.data)
         }
 
         fetchTasks()
-    }, [title, status])
+    }, [title, status, date])
     
     return (
         <Container>
@@ -48,6 +49,11 @@ export function HomeDesktop() {
             <HeaderTop/>
 
             <Menu>
+
+                <li>
+                    <input type="date" onChange={e => setDate(e.target.value)}/>
+                </li>
+
                 <li>
                     <ButtonText 
                         title="Todos" 

@@ -16,6 +16,7 @@ export function Home() {
     const [ tasks, setTasks ] = useState([])
     const [ optionSelected, setOptionSelected ] = useState([])
     const [ search, setSearch ] = useState([])
+    const [ date, setDate ] = useState('')
     
     const navigate = useNavigate()
 
@@ -41,13 +42,13 @@ export function Home() {
     useEffect(() => {
         
         async function fetchTasksSelected() {
-            const response = await api.get(`/tasks?title=${search}&status=${optionSelected}`)
+            const response = await api.get(`/tasks?title=${search}&status=${optionSelected}&date=${date}`)
 
             setTasks(response.data)
         } 
         
         fetchTasksSelected()
-    }, [optionSelected, search])
+    }, [optionSelected, search, date])
 
     useEffect(() => {
         async function fetchTasks() {
@@ -65,6 +66,8 @@ export function Home() {
 
             <Content>
                 <Menu>
+                    <input type="date" onChange={e => setDate(e.target.value)}/>
+
                     <ul>
                         <li>
                             <ButtonText 

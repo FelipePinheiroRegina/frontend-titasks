@@ -27,12 +27,26 @@ export const Menu = styled.div`
     
     font-weight: 400;
 
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
     > ul {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         list-style: none;
     }
+
+    input {
+          width: max-content;  
+          background-color: ${({ theme }) => theme.COLORS.WHITE};
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          outline: none;
+          padding: 4px;
+     }
 `
 
 export const Content = styled.div`

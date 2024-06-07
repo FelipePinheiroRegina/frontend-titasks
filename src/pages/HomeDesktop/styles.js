@@ -47,8 +47,19 @@ export const Menu  = styled.ul`
      display: flex;
      flex-direction: column;
      gap: 24px;
+     align-items: center;
+     list-style-type: none;
 
      background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+
+     input {
+          background-color: ${({ theme }) => theme.COLORS.WHITE};
+          border: none;
+          padding: 10px;
+          border-radius: 8px;
+          cursor: pointer;
+          outline: none;
+     }
 
      button {
           transition: transform ease .3s;
