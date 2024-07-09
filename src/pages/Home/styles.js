@@ -47,10 +47,8 @@ export const Container = styled.div`
             background-color: ${({ theme }) => theme.COLORS.GREEN};
             color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
 
-            
             cursor: pointer;
             font-weight: bold;
-            font-size: 1.25rem; 
             
             text-decoration: none;
 
@@ -91,8 +89,7 @@ export const Menu = styled.div`
     input[type="date"] {
         background-color: transparent;
         border: none;
-        color: ${({ theme }) => theme.COLORS.WHITE};
-        
+        color: ${({ theme }) => theme.COLORS.WHITE}; 
     } 
 
     input[type="date"]::-webkit-calendar-picker-indicator {
@@ -279,6 +276,14 @@ export const ButtonOptions = styled.button`
     background-color: ${({ theme }) => theme.COLORS.GREEN};
     color: ${({ theme }) => theme.COLORS.BACKGORUND_900};
     cursor: pointer;
+    border: none;
+    margin-bottom: .2rem;
+
+    font-weight: bold;
+    
+    &:hover {
+        filter: saturate(150%)
+    }
     
     span {
         display: flex;

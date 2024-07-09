@@ -83,14 +83,6 @@ export const Content = styled.div`
     > .documentations {
         overflow-y: auto;
         height: 30rem;
-        
-
-        @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: .2rem;
-            place-items: center;
-        }
     }
 
     ::-webkit-scrollbar {

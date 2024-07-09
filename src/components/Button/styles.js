@@ -11,6 +11,11 @@ export const Container = styled.button`
     place-items: center;
     justify-content: center;
     gap: 0.8rem;
+    border: none;
+
+    &:hover {
+        filter: saturate(150%);
+    }
 
     cursor: pointer;
     

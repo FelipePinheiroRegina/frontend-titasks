@@ -4,7 +4,6 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
-  
 
   display: grid;
   grid-template-columns: 25rem;
@@ -31,7 +30,6 @@ export const Logo = styled.div`
     font-size: 1.5rem; 
   }
   
-
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
   border-bottom: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_700};
 
@@ -55,20 +53,23 @@ export const Bar = styled.div`
       height: 3.125rem;
       font-size: 1rem;
       gap: .5rem;
+      border: none;
+
+      &:hover {
+        filter: saturate(150%)
+      }
        
       svg {
         color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
         font-size: 1.2rem;
       }
   }
-  
 
   @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
     display: flex;
     align-items: flex-end;
-    justify-content: center; 
-    
-    }
+    justify-content: center;
+  }
 `
 
 export const Content = styled.div`
@@ -99,7 +100,6 @@ export const Content = styled.div`
 
   @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
       grid-area: content;
-  
   }
 `;
 
@@ -121,6 +121,5 @@ export const ContainerSchedule = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  gap: 12px; 
-              
+  gap: 12px;           
 `

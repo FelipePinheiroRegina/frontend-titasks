@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
 
 export const Container = styled.button`
     display: flex;
@@ -17,13 +16,4 @@ export const Container = styled.button`
     
     margin-bottom: .8rem;
     font-size: 1rem;
-    
-    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
-        width: 9rem;
-        height: 9rem;
-
-        flex-direction: column;
-
-        border-radius: 0;
-    }
 `
