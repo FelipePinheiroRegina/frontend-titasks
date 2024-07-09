@@ -7,7 +7,7 @@ export function ButtonHeader({icon: Icon, isactive = false, ...rest}) {
             $isactive={isactive} 
             {...rest}
         >
-            {Icon && <Icon size={30}/>}
+            {Icon && <Icon />}
         </Container>
     )
 }

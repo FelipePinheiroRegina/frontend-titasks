@@ -1,4 +1,5 @@
 import { LuImageOff, LuImagePlus } from "react-icons/lu";
+import { FiArrowLeft } from "react-icons/fi"
 
 import { Container, Form, Head, Title } from "./styles"
 
@@ -13,12 +14,9 @@ import { HeaderTop } from "../../components/HeaderTop"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { api } from "../../services/api"
-import { useAuth } from "../../hooks/auth"
 import background from '../../assets/background.svg'
 
 export function Create() {
-    const { setOptionSelectedHeader } = useAuth()
-
     const [ title, setTitle ] = useState('')
     const [ description, setDescription ] = useState('')
     const [ date, setDate ] = useState('')
@@ -28,7 +26,11 @@ export function Create() {
     const [ image, setImage ] = useState()
     const [ imageFile, setImageFile ] = useState(null)
     
-    const navigate = new useNavigate()
+    const navigate = useNavigate()
+
+    function handleBack() {
+        navigate(-1)
+    }
 
     function handleAddImage(event) {
         const file = event.target.files[0];
@@ -78,8 +80,9 @@ export function Create() {
             await api.post('/tasks/image', form);
         
             alert('Tarefa criada com sucesso!');
-            setOptionSelectedHeader('home');
-            navigate(-1);
+            sessionStorage.setItem('@optionMenuTitasks', 'home')
+            navigate(-1)
+
         } catch (error) {
             if (error.response) {
                 alert(error.response.data.message);
@@ -96,6 +99,12 @@ export function Create() {
             <Form>
                 <Title>
                     <h1>Criar tarefa</h1>
+
+                    <button
+                        onClick={handleBack}
+                    >
+                        <FiArrowLeft/>
+                    </button>
                 </Title>
                 
                 <Input 
@@ -105,7 +114,7 @@ export function Create() {
                 />
 
                 <TextArea 
-                    laceholder="Descrição"
+                    placeholder="Descrição"
                     onChange={e => setDescription(e.target.value)}
                 />
 

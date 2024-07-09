@@ -7,6 +7,7 @@ export const Container = styled.button`
     cursor: pointer;
 
     > svg {
+        font-size: 1.5rem; 
         color: ${({ theme, $isactive}) => $isactive? theme.COLORS.GREEN : theme.COLORS.WHITE};
     }
 `

@@ -7,41 +7,40 @@ export const Container = styled.button`
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    gap: 16px;
+    gap: 1rem;
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+    opacity: ${({ $isTrue }) => $isTrue ? '0.5': 'transparent'};
     color: ${({ theme }) => theme.COLORS.WHITE};
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 8px;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
 
     .title-status {
         display: flex;
         justify-content: space-between;
         width: 100%;
-        font-size: 14px;
         
         h1 {
-            text-align: left;
-            font-size: 22px;
+            font-size: 1rem;
         } 
 
         .date {
             display:  flex;
             flex-direction: column;
             place-items: flex-end;
-            gap: 8px;
+            gap: 0.5rem;
            
 
             span {
                 display: flex;
-                gap: 8px;
+                gap: 0.5rem;
             }
 
             div {
                 display: flex;
                 place-items: flex-end;
                 flex-direction: column;
-                gap: 8px;
+                gap: 0.5rem;
                 text-align: right;
             }
         }
@@ -49,21 +48,23 @@ export const Container = styled.button`
  
     strong {
         display: flex;
-        gap: 8px;
+        font-size: 1rem;
+        gap: 0.5rem;
         align-items: center;
         color: ${({ theme }) => theme.COLORS.GRAY_100};
 
         img {
             border-radius: 50%;
-            width: 16px;
-            height: 16px;
+            width: 1rem;
+            height: 1rem;
         }
     }
 
     > span {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 0.5rem;
+        font-size: 1rem;
 
         svg {
             color: ${({ theme }) => theme.COLORS.GREEN};
@@ -73,7 +74,8 @@ export const Container = styled.button`
     .count-answers {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 0.5rem;
+        font-size: 1rem;
     }
 
     .answer-container {
@@ -83,51 +85,10 @@ export const Container = styled.button`
         flex-wrap: wrap; 
         margin-left: 10px;
         img {
-            margin-left: -10px;
-            width: 24px;
+            margin-left: -0.62rem;
+            width: 1rem;
             border-radius: 50%;
         }      
-    }
-    
-    @media screen and (min-width: 900px) {
-        font-size: 20px;
-        
-
-        .title-status {
-            font-size: 20px;
-
-            h1 {
-                font-size: 28px;
-            }
-        }
-
-        strong {
-        
-            img {
-                width: 30px;
-                height: 30px;
-            }
-        }
-
-        > span {
-            
-            svg {
-                font-size: 30px;
-                color: ${({ theme }) => theme.COLORS.GREEN};
-            }
-        }
-
-        .count-answers {
-            svg {
-                font-size: 30px;
-            }
-        }
-
-        .answer-container {
-            img {
-                width: 30px;
-            }
-        }
     }
 `
 

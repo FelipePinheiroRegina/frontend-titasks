@@ -3,30 +3,30 @@ import { styled } from "styled-components"
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1rem;
     
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
-    padding: 20px 30px;
-    border-radius: 8px;
+    padding: 1.25rem 1.875rem;
+    border-radius: 0.5rem;
 
-    margin: 10px 0px 24px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_700};
+    margin: 0.5rem 0 1.5rem;
+    padding-bottom: 1.25rem;
 
     .details {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        align-items: flex-start;
+        gap: 0.5rem;
 
-        margin-bottom: 14px;
+        margin-bottom: 0.6rem;
 
         .count {
             display: flex;
             align-items: center;
             justify-content: center;
 
-            width: 16px;
-            height: 16px;
+            width: 1rem;
+            height: 1rem;
             border-radius: 50%;
             background-color: ${({ theme }) => theme.COLORS.GREEN};
             color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
@@ -34,16 +34,17 @@ export const Container = styled.div`
 
         span {
             display: flex;
-            gap: 8px;
+            align-items: center; 
+            gap: 0.5rem;
 
             img {
-                width: 16px;
-                height: 16px;
+                height: 1rem;
                 border-radius: 50%;
             }
 
             svg {
                 color: ${({ theme }) => theme.COLORS.GREEN};
+                
             }
         }
     }
@@ -55,8 +56,8 @@ export const Container = styled.div`
         background-color: transparent;
 
         img {
-            width: 100%;
-            filter: blur(3px);
+            height: 12.5rem;
+            filter: brightness(0.2);
             
         }
 
@@ -68,47 +69,4 @@ export const Container = styled.div`
             color: ${({ theme }) => theme.COLORS.GREEN};
         }
     }
-
-    @media screen and (min-width: 900px) {
-            .details {
-                .count {
-                    width: 30px;
-                    height: 30px;
-
-                    font-size: 20px;
-                }
-
-                .img-por-name {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    font-size: 20px;
-
-                    img {
-                        width: 30px;
-                        height: 30px;
-                    }
-                }
-            }
-            
-
-            .created-at {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-
-                font-size: 20px;
-
-                svg {
-                    font-size: 30px;
-                }
-            }
-
-           
-            .print:hover {
-                img {
-                    filter: blur(0px);
-                }
-            } 
-        }
 `

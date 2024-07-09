@@ -4,7 +4,7 @@ import avatarPlaceholder from '../../assets/avatar_placeholder.svg'
 import { api } from "../../services/api"
 import { useState, useEffect } from "react"
 
-export function TaskPreview({data, ...rest}) {
+export function TaskPreview({data, isTrue=false, ...rest}) {
     const [ answer, setAnswer ] = useState([])
     const [ arrayAvatar, setArrayAvatar ] = useState([])
     const avatarUrl = data.avatar ? `${api.defaults.baseURL}/files/${data.avatar}` : avatarPlaceholder
@@ -30,7 +30,9 @@ export function TaskPreview({data, ...rest}) {
     }, [data.id])
   
     return (
-        <Container {...rest}>
+        <Container
+            $isTrue={isTrue} 
+            {...rest }>
             <div className="title-status">
                 <h1>{data.title}</h1>
                 
@@ -39,17 +41,6 @@ export function TaskPreview({data, ...rest}) {
                         {data.status}
                         <StatusCircle status={data.status}/>
                     </span>
-                    
-                    {data.updated_at && 
-                        <div>
-                            
-                            <p>
-                                Atualizado  
-                            </p>
-
-                            {data.updated_at}
-                        </div>
-                    }  
                 </div>
             </div>
             

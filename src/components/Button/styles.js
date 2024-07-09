@@ -3,11 +3,14 @@ import styled from "styled-components"
 export const Container = styled.button`
     width: 100%;
     border-radius: 1rem;
-    border: none;
-    height: 56px;
+    height: 3.5rem;
 
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: normal;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    gap: 0.8rem;
 
     cursor: pointer;
     

@@ -6,7 +6,6 @@ export const AuthContext = createContext({})
 
 function AuthProvider({ children }) {
     const [ data, setData ] = useState({})
-    const [ optionSelectedHeader, setOptionSelectedHeader ] = useState('home')
     
     async function signIn({email, password}) {
         try {
@@ -54,6 +53,8 @@ function AuthProvider({ children }) {
     function logOut() {
         localStorage.removeItem("@titasks:user")
         localStorage.removeItem("@titasks:token")
+        sessionStorage.removeItem('@filterScheduleTitasks')
+        sessionStorage.removeItem('@optionMenuTitasks')
         
         setData({})
     }
@@ -76,8 +77,6 @@ function AuthProvider({ children }) {
             signIn,
             logOut,
             updateProfile,
-            optionSelectedHeader,
-            setOptionSelectedHeader,
             user: data.user
         }}>
 

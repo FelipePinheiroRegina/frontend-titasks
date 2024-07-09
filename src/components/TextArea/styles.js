@@ -5,9 +5,9 @@ export const Container = styled.textarea`
     background-color: ${({ theme })  => theme.COLORS.BACKGROUND_900};
     border: none;
     resize: none;
-    height: 150px;
-    border-radius: 10px;
-    padding: 10px;
+    height: 9.375rem;
+    border-radius: 0.625rem;
+    padding: 0.625rem;
     color: ${({ theme })  => theme.COLORS.WHITE};
 
     outline: none;

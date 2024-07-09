@@ -1,13 +1,12 @@
 import styled from "styled-components"
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
 
 export const Container = styled.div`
     position: relative;
     height: 100vh;
 
-   
-
     display: grid;
-    grid-template-columns: 320px;
+    grid-template-columns: 25rem;
     grid-template-rows: max-content auto max-content;
     justify-content: center;
     
@@ -21,35 +20,53 @@ export const Container = styled.div`
         right: 0;
         left: 0;
     }
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+        grid-template-columns: 40rem;
+    }
 `
 
 export const Content = styled.div`
-    padding: 80px 0px;
+    padding: 5rem 0;
 
     > .buttons-top {
-        margin-top: 64px;
-        margin-bottom: 30px;
-        padding: 0px 10px;
+        margin-top: 4rem;
+        margin-bottom: 1.875rem;
         
         display: flex;
         align-items: center;
         justify-content: space-between;
+        width: 100%;
         
-         > button:nth-child(1) {
-            width: max-content;
-            text-align: left;
-            color: ${({ theme }) => theme.COLORS.GREEN};
-
-            
+        svg {
+            font-size: 1.5rem;
         }
+
+        .back {
+            width: max-content;
+            color: ${({ theme }) => theme.COLORS.GREEN};
+            transition: transform ease .1s;
+        }
+
+        .button-open-status {
+            transition: transform ease .1s;
+        }
+
+        @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+            .back:hover {
+                transform: scale(1.2);    
+            }
+
+            .button-open-status:hover {
+                transform: rotate(360deg);
+            }
+        } 
     }
    
-
-  
     .task {
-        padding: 20px 30px;
-        margin-bottom: 54px;
-        border-radius: 8px;
+        padding: 1.25rem 1.875rem;
+        margin-bottom: 3.375rem;
+        border-radius: 0.5rem;
         background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
 
         .title-status {
@@ -58,27 +75,31 @@ export const Content = styled.div`
            justify-content: space-between;
 
            h1 {
-            font-size: 22px;
+            font-size: 1.5rem;
            }
 
-           margin-bottom: 30px;
+           margin-bottom: 1.875rem;
 
            .status-date {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
-                gap: 8px;
+                gap: 0.3rem;
 
                 .status{
                     display: flex;
-                    gap: 8px;
+                    align-items: center;
+                    gap: 0.5rem;
+                    padding-bottom: .3rem;
+                    border-bottom: .1rem dashed ${({ theme }) => theme.COLORS.BACKGROUND_700};
                 }
 
                 .date {
+                    padding-top: .3rem;
                     display: flex;
                     flex-direction: column;
                     text-align: right;
-                    gap: 8px;
+                    gap: 0.5rem;
                 }
            }
         }
@@ -86,25 +107,26 @@ export const Content = styled.div`
         .information {
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            margin-bottom: 30px;
+            gap: .5rem;
+            margin-bottom: 1rem;
+            padding-bottom: .3rem;
+            border-bottom: .1rem dashed ${({ theme }) => theme.COLORS.BACKGROUND_700};
             
-
             .criado-por {
                 display: flex;
                 align-items: center;
-                gap: 8px;
+                gap: 0.5rem;
 
                 img {
                     border-radius: 50%;
-                    width: 16px;
+                    width: 1rem;
                 }
             }
 
             .created-at {
                 display: flex;
                 align-items: center;
-                gap: 8px;
+                gap: 0.5rem;
 
                 svg {
                     color: ${({ theme }) => theme.COLORS.GREEN}
@@ -114,7 +136,7 @@ export const Content = styled.div`
             > .deadline {
                 display: flex;
                 align-items: center;
-                gap: 8px;
+                gap: 0.5rem;
 
                 svg {
                     color: ${({ theme }) => theme.COLORS.RED}
@@ -123,9 +145,9 @@ export const Content = styled.div`
         }  
 
         > p {
-            line-height: 22px;
+            line-height: 1.2rem;
 
-            margin-bottom: 54px;
+            margin-bottom: 3.375rem;
         }
 
         .image {
@@ -136,8 +158,8 @@ export const Content = styled.div`
             cursor: pointer;
             
             img {
-                width: 100%;
-                filter: blur(3px);
+                height: 12.5rem;
+                filter: brightness(0.2);
             }
 
             svg {
@@ -165,11 +187,11 @@ export const Content = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 50px;
-        height: 50px;
+        width: 3.125rem;
+        height: 3.125rem;
 
         svg {
-            font-size: 24px;
+            font-size: 1.5rem;
         }
     }
 
@@ -187,12 +209,13 @@ export const Content = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 50px;
-        height: 50px;
+        
+        width: 3.125rem;
+        height: 3.125rem;
 
         svg {
-            font-size: 24px;
-        }
+            font-size: 1.5rem;
+        } 
     }
 
     .button-open-status {
@@ -200,8 +223,19 @@ export const Content = styled.div`
         background-color: transparent; 
         color: ${({ theme }) => theme.COLORS.GREEN};  
         cursor: pointer;
-        
-    }  
+    } 
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+        > .openModal:hover {
+            transform: scale(1.1);
+            transition: .3s;
+        }
+
+        > .scrollTop:hover {
+            transform: scale(1.1);
+            transition: .3s;
+        }
+    }
 ` 
 
 export const ModalStatus = styled.div`
@@ -211,22 +245,21 @@ export const ModalStatus = styled.div`
     display: flex;
     flex-direction: column;
     
-    gap: 36px;
+    gap: 2.25rem;
 
-    padding: 30px;
+    padding: 1.875rem;
 
-    width: 320px;
-    height: 400px;
+    width: 25rem;
+    height: 25rem;
     
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
-    border: 1px solid  ${({ theme }) => theme.COLORS.BACKGROUND_700};
-    border-radius: 8px; 
+    border: .1rem dashed ${({ theme }) => theme.COLORS.GRAY_100};
+    border-radius: 0.5rem; 
     
     button:nth-child(1) {
         background-color: transparent;
         border: none;
-        width: 100%;
-        text-align: left;
+        width: max-content;
         cursor: pointer;
         color: ${({ theme }) => theme.COLORS.GREEN};
     }
@@ -239,12 +272,21 @@ export const ModalStatus = styled.div`
         
         background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
         border: none;
-        height: 56px;
-        font-size: 20px;
+        height: 3.5rem;
+        font-size: 1.25rem;
         border-radius: 10px;
-        padding: 10px;
+        padding: 0.5rem;
         color: ${({ theme }) => theme.COLORS.WHITE};  
         outline: none;
+    }
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+        width: 40rem;
+
+        button:nth-child(1):hover {
+            transform: scale(1.1);
+            transform: .3s;
+        }
     }
 `
 
@@ -261,32 +303,32 @@ export const Modal = styled.div`
 
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-    padding: 0px 60px;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    padding: 0px 3.75rem;
 
     button:nth-child(1) {
         border: none;
         background-color: transparent;
-        text-align: right;
         cursor: pointer;
         color: ${({ theme }) => theme.COLORS.GREEN};
+        width: max-content;
     }
 
     > form {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 0.5rem;
 
-        padding-bottom: 64px;
+        padding-bottom: 4rem;
 
         section {
-            margin: 24px 0px;
+            margin: 1.5rem 0;
         }
 
         label {
             display: flex;
-            gap: 24px;
+            gap: 1.5rem;
            
             > button {
                 border: none;
@@ -305,13 +347,18 @@ export const Modal = styled.div`
         }
     
         img {
-            width: 100%;
-            height: 200px;
-            margin: 24px auto 0px;
+            height: 12.5rem;
+            margin: 1.5rem auto 0;
         }
     }
 
     section {
-        margin-bottom: 24px;
+        margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+        button:nth-child(1):hover {
+            transform: scale(1.1);
+        }
     }
 `

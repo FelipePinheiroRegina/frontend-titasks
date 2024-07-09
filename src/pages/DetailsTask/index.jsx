@@ -157,6 +157,7 @@ export function DetailsTask() {
             <Content>
                 <div className="buttons-top">
                     <ButtonText 
+                        className="back"
                         title={<FiArrowLeft/>} 
                         onClick={handleBack}
                     />
@@ -170,25 +171,25 @@ export function DetailsTask() {
                 </div>
 
                 {
-                    isModalOpenStatus &&
-                        <ModalStatus>
-                             <button
-                                onClick={closeModalStatus}
-                             >
-                                <FiX size={18}/>
-                            </button>
+                isModalOpenStatus &&
+                    <ModalStatus>
+                            <button
+                            onClick={closeModalStatus}
+                            >
+                            <FiX size={18}/>
+                        </button>
 
-                            <Section title="Status da tarefa">
-                                <select onChange={e => setStatus(e.target.value)}>
-                                    <option value={task.status}>{task.status}</option>
-                                    <option value="Fazer">Fazer</option>
-                                    <option value="Fazendo">Fazendo</option>
-                                    <option value="Feito">Feito</option>
-                                </select>
-                            </Section>
+                        <Section title="Status da tarefa">
+                            <select onChange={e => setStatus(e.target.value)}>
+                                <option value={task.status}>{task.status}</option>
+                                <option value="Fazer">Fazer</option>
+                                <option value="Fazendo">Fazendo</option>
+                                <option value="Feito">Feito</option>
+                            </select>
+                        </Section>
 
-                            <Button title="Alterar" onClick={handleChangeStatus}/>
-                        </ModalStatus>
+                        <Button title="Alterar" onClick={handleChangeStatus}/>
+                    </ModalStatus>
                 }
 
                 <div className="task">
@@ -197,10 +198,9 @@ export function DetailsTask() {
     
                         <div className="status-date">
                             <div className="status">
-                               <StatusCircle status={task.status} size={16}/>
                                 {task.status} 
+                                <StatusCircle status={task.status} size={16}/>
                             </div>
-
                               
                             {task.updated_at && 
                                 <div className="date">
@@ -213,7 +213,6 @@ export function DetailsTask() {
                             }  
                         </div>
                     </div>
-    
     
                     <div className="information">
                         <div className="criado-por">

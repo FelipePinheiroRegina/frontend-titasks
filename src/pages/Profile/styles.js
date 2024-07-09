@@ -1,17 +1,48 @@
 import styled from "styled-components"
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
 
 export const Container = styled.div`
     position: relative;
 
     display: grid;
-    grid-template-rows: 120px auto;
+    grid-template-rows: 7.5rem auto;
     
     
     height: 100vh;
     width: 100%;
+`
 
-    > div:nth-child(1) {
-        background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+export const Bar  = styled.div`
+    display: flex;
+    align-items: center;
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+    width: 100%;
+
+    button {
+        display: none;
+    }
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+        button {
+            display: block;
+            border: none;
+            background-color: transparent;
+            width: max-content;
+        }
+
+        svg {
+            font-size: 24px;
+            margin-left: 144px;
+            color: ${({ theme }) => theme.COLORS.GREEN};
+
+            cursor: pointer;
+
+            transition: transform ease .3s;
+        }
+
+        svg:hover {
+            transform: scale(1.2);
+        }
     }
 `
 
@@ -23,38 +54,42 @@ export const Head = styled.div`
 `
 
 export const Form = styled.form`
-    width: 300px;
+    width: 25rem;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
 
-    padding: 0 20px;
+    padding: 0 1.25rem;
 
     div:nth-child(4) {
-        margin-top: 24px;
+        margin-top: 1.5rem;
     }
 
     button {
-       margin-top: 20px;
+       margin-top: 1.25rem;
+    }
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+        
     }
 `
 export const Avatar = styled.div`
     position: relative;
     text-align: center;
-    margin-top: -80px;
-    margin-bottom: 30px;
+    margin-top: -5rem;
+    margin-bottom: 1.875rem;
     
     > label {
-        width: 48px;
-        height: 48px;
+        width: 3rem;
+        height: 3rem;
 
         display: flex;
         align-items: center;
         justify-content: center;
 
         position: absolute;
-        bottom: 7px;
-        right: 50px;
+        bottom: 0.43rem;
+        right: 6.125rem;
         cursor: pointer;
 
         color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
@@ -66,14 +101,14 @@ export const Avatar = styled.div`
         }
 
         svg {
-            width: 20px;
-            height: 20px;
+            width: 1.25rem;
+            height: 1.25rem;
         }
     }
 
     img {
-        height: 150px;
-        width: 150px;
+        height: 9.375rem;
+        width: 9.375rem;
         border-radius: 50%;
     }  
 `

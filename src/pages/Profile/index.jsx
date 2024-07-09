@@ -2,9 +2,9 @@ import { useState } from "react"
 import { useAuth } from "../../hooks/auth"
 import { useNavigate } from "react-router-dom"
 
-import { FiCamera, FiUser, FiMail, FiLock } from "react-icons/fi"
+import { FiCamera, FiUser, FiMail, FiLock, FiArrowLeft } from "react-icons/fi"
 
-import { Container, Head, Form, Avatar } from "./styles"
+import { Container, Head, Form, Avatar, Bar } from "./styles"
 
 import { Header } from "../../components/Header"
 import { Input } from "../../components/Input"
@@ -26,6 +26,10 @@ export function Profile() {
     const [ oldPassword, setOldPassword ] = useState("")
 
     const navigate = new useNavigate()
+
+    function handleBack() {
+        navigate(-1)
+    }
 
     async function handleUpdate() {
         const updated = {
@@ -51,9 +55,11 @@ export function Profile() {
 
     return (
         <Container>
-            <div>
-
-            </div>
+            <Bar>
+                <button onClick={handleBack}>
+                    <FiArrowLeft/>
+                </button>
+            </Bar>
 
             <Form>
                 <Avatar>
