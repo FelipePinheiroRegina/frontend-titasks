@@ -48,8 +48,17 @@ export const Content = styled.div`
             transition: transform ease .1s;
         }
 
+        label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
         .button-open-status {
             transition: transform ease .1s;
+            display: flex;
+            align-items: center;
         }
 
         @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {

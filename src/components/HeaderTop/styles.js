@@ -31,6 +31,12 @@ export const Avatar  = styled.div`
     display: flex;
     align-items: center;
     gap: 0.5rem;
+
+    button {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+    }
  
     img {
         width: 3.12rem;

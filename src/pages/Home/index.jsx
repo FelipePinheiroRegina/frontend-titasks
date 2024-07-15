@@ -16,6 +16,7 @@ import { api } from "../../services/api"
 
 export function Home() {
     const [ tasks, setTasks ] = useState([])
+    const [ myTasks, setMyTasks ] = useState(false)
 
     const stateFilterStatus = sessionStorage.getItem('@filterStatusTitasks') == undefined ? 'Todas' : sessionStorage.getItem('@filterStatusTitasks')
     
@@ -24,31 +25,18 @@ export function Home() {
     const [ search, setSearch ] = useState([])
     const [ date, setDate ] = useState('')
     const [ countTasks, setCountTasks ] = useState([])
-    const [ yourself, setYourself ] = useState(true)
+ 
+    function handleMyTasks(state) {
+        setMyTasks(!state)
+    }
 
 // ABOUT MENU OPTIONS ------------------------------------------
-    const [ isMyTasksVisible, setIsMyTasksVisible ] = useState(true)
-    const [ isTasksVisible, setIsTasksVisible ] = useState(false);
+    const [ isTasksVisible, setIsTasksVisible ] = useState(true)
     const [ isDocumentationsVisible, setIsDocumentationsVisible ] = useState(false)
     const [ isScheduleVisible, setIsScheduleVisible ] = useState(false)
     
-    const toggleMyTasks = () => {
-        setIsMyTasksVisible(!isMyTasksVisible)
-
-        // Definindo a variavel yourself como true, pois se eu clicar na função toggleMyTasks, eu quero ver sómente as minhas tasks. e fechando a função toggleTasks
-        setYourself(!yourself)  
-        setIsTasksVisible(false)
-    }
-
     const toggleTasks = () => {
         setIsTasksVisible(!isTasksVisible)
-        
-        // Definindo a variavel yourself como false, pois se eu clicar na função toggleTasks, eu quero ver as tasks de todos os usuários. e fechando a função toggleMyTasks
-
-        if (yourself == true) {
-            setYourself(!yourself)
-            setIsMyTasksVisible(false)
-        }
     }
 
     const toggleDocumentations = () => {
@@ -89,50 +77,53 @@ export function Home() {
     
     useEffect(() => {
         async function fetchTasksSelected() {
-            const response = await api.get(`/tasks/${yourself}?title=${search}&status=${optionSelected}&date=${date}`)
-
-            setTasks(response.data)
+            const response = await api.get(`/tasks?title=${search}&status=${optionSelected}&date=${date}&mytasks=${myTasks}`)
+            setTasks(response.data.formattedResponse)
         } 
         
         fetchTasksSelected()
-    }, [optionSelected, search, date, yourself])
+    }, [optionSelected, search, date, myTasks])
 
     useEffect(() => {
         async function fetchTasks() {
-            const response = await api.get(`/tasks/${yourself}?`)
-
-            if(optionSelected !== "Todas") {
-                const responseWithStatus = await api.get(`/tasks/${yourself}?status=${optionSelected}`)
-                setTasks(responseWithStatus.data)
-
-            } else {
-                setTasks(response.data)
-            }
-
-            setCountTasks(response.data) 
+            const response = await api.get(`/tasks`) 
+            setTasks(response.data.formattedResponse)
         }
-
+        
         fetchTasks()
-    }, [yourself])
+    }, [])
 
     // Funcionalidade de contar quantas tarefas existe em: Todo, Fazer, Fazendo, Feito
-    const doo   = Array()
-    const doing = Array()
-    const done  = Array()
-    const all   = Array()
-   
-    countTasks.forEach(task => {
-        if (task.status == 'Fazer') {
-            doo.push(task)
-        } else if (task.status == 'Fazendo') {
-            doing.push(task)
-        } else {
-            done.push(task)
-        }
 
-        all.push(task)
-    })
-    
+    // Variaveis para saber a contagem de tarefas de todo mundo
+    const [ all, setAll ] = useState(0)
+    const [ doo, setDoo ] = useState(0)
+    const [ doing, setDoing ] = useState(0)
+    const [ done, setDone ] = useState(0)
+
+    // Variaveis para saber a contagem de tarefas do usuario de acordo com o id
+    const [ allUser_id, setAllUser_id ] = useState(0)
+    const [ dooUser_id, setDooUser_id ] = useState(0)
+    const [ doingUser_id, setDoingUser_id ] = useState(0)
+    const [ doneUser_id, setDoneUser_id ] = useState(0)
+
+    useEffect(() => {
+        async function fetchTasksForCount() {
+            const response = await api.get(`/tasks`) 
+            setAll(response.data.countAllTasks.total)
+            setDoo(response.data.countAllTasksDo.fazer)
+            setDoing(response.data.countAllTasksDoing.fazendo)
+            setDone(response.data.countAllTasksDone.feito)
+            
+            setAllUser_id(response.data.countAllTasks_user_id.total)
+            setDooUser_id(response.data.countAllTasksDo_user_id.fazer)
+            setDoingUser_id(response.data.countAllTasksDoing_user_id.fazendo)
+            setDoneUser_id(response.data.countAllTasksDone_user_id.feito)
+        }
+        
+        fetchTasksForCount()
+    }, [])
+   
     return (
         <Container>
         <Logo className="Logo">
@@ -144,63 +135,11 @@ export function Home() {
         <Menu>
             <div className="menuOptions">
                 <ButtonOptions 
-                    onClick={toggleMyTasks}
-                    className="buttonOpen"
-                >
-                    <span>
-                        Minhas tarefas 
-                    
-                        {isMyTasksVisible ? 
-                            <TiArrowDownThick/> : 
-                            <TiArrowRightThick/>}
-                    </span>
-
-                </ButtonOptions>
-                            
-                <div 
-                    className={`
-                        myTasks ${isMyTasksVisible ? 'visible' : ''}`} 
-                >
-
-                    <input type="date" onChange={e => setDate(e.target.value)}/>
-                    <ul>
-                        <li>
-                            <ButtonText
-                                title={`Todas(${all.length})`}
-                                onClick={() => handleOptionSelected('Todas')}
-                                isactive={optionSelected == 'Todas'}
-                            />
-                        </li>
-                        <li>
-                            <ButtonText
-                                title={`Fazer(${doo.length})`}
-                                onClick={() => handleOptionSelected('Fazer')}
-                                isactive={optionSelected == 'Fazer'}
-                            />
-                        </li>
-                        <li>
-                            <ButtonText
-                                title={`Fazendo(${doing.length})`}
-                                onClick={() => handleOptionSelected('Fazendo')}
-                                isactive={optionSelected == 'Fazendo'}
-                            />
-                        </li>
-                        <li>
-                            <ButtonText
-                                title={`Feito(${done.length})`}
-                                onClick={() => handleOptionSelected('Feito')}
-                                isactive={optionSelected == 'Feito'}
-                            />
-                        </li>
-                    </ul>
-                </div>
-
-                <ButtonOptions 
                     onClick={toggleTasks}
                     className="buttonOpen"
                 >
                     <span>
-                        Todas tarefas 
+                        Tarefas
                     
                         {isTasksVisible ? 
                             <TiArrowDownThick/> : 
@@ -213,13 +152,22 @@ export function Home() {
                     className={`
                         options ${isTasksVisible ? 'visible' : ''}`} 
                 >
-
-                    <input type="date" onChange={e => setDate(e.target.value)}/>
+                    
+                    <div className="date-mytasks">
+                        <input type="date" onChange={e => setDate(e.target.value)}/>
+                        
+                        <ButtonText className="my-tasks"
+                            title="Minhas tarefas" 
+                            isactive={myTasks === true}
+                            onClick={() => handleMyTasks(myTasks)}  
+                        /> 
+                    </div>
+                    
                     <ul>
 
                         <li>
                             <ButtonText
-                                title={`Todas(${all.length})`}
+                                title={`Todas(${myTasks ? allUser_id : all})`}
                                 onClick={() => handleOptionSelected('Todas')}
                                 isactive={optionSelected == 'Todas'}
                             />
@@ -227,7 +175,7 @@ export function Home() {
 
                         <li>
                             <ButtonText
-                                title={`Fazer(${doo.length})`}
+                                title={`Fazer(${myTasks ? dooUser_id : doo})`}
                                 onClick={() => handleOptionSelected('Fazer')}
                                 isactive={optionSelected == 'Fazer'}
                             />
@@ -235,7 +183,7 @@ export function Home() {
 
                         <li>
                             <ButtonText
-                                title={`Fazendo(${doing.length})`}
+                                title={`Fazendo(${myTasks ? doingUser_id : doing})`}
                                 onClick={() => handleOptionSelected('Fazendo')}
                                 isactive={optionSelected == 'Fazendo'}
                             />
@@ -243,7 +191,7 @@ export function Home() {
 
                         <li>
                             <ButtonText
-                                title={`Feito(${done.length})`}
+                                title={`Feito(${myTasks ? doneUser_id : done})`}
                                 onClick={() => handleOptionSelected('Feito')}
                                 isactive={optionSelected == 'Feito'}
                             />
@@ -321,7 +269,7 @@ export function Home() {
          <Content>
             <h2>Tarefas</h2>
 
-            {(isMyTasksVisible || isTasksVisible) && tasks.length > 0 && tasks.map(task => (
+            {(isTasksVisible) && tasks.length > 0 && tasks.map(task => (
                     <TaskPreview
                         key={String(task.id)}
                         data={{

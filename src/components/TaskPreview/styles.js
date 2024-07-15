@@ -90,6 +90,10 @@ export const Container = styled.button`
             border-radius: 50%;
         }      
     }
+
+    &:hover {
+        background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
+    }
 `
 
 const getStatusColor = (status) => {

@@ -19,7 +19,6 @@ import { AnswerView } from "../../components/AnswerView"
 import { useAuth } from "../../hooks/auth";
 
 export function DetailsTask() {
-    const { setOptionSelectedHeader } = useAuth()
     const [ status, setStatus ] = useState('')
     const [ task, setTask ] = useState([])
     const { id } = useParams()
@@ -162,12 +161,17 @@ export function DetailsTask() {
                         onClick={handleBack}
                     />
 
-                    <button
-                        className="button-open-status"
-                        onClick={openModalStatus}
-                    >
-                        <FiRefreshCw/>
-                    </button>
+                    <label htmlFor="status">
+                        Alterar status
+                        <button
+                            id="status"
+                            className="button-open-status"
+                            onClick={openModalStatus}
+                        >
+                            
+                            <FiRefreshCw/>
+                        </button>
+                    </label>
                 </div>
 
                 {

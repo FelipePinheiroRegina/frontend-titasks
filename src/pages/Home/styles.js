@@ -98,6 +98,15 @@ export const Menu = styled.div`
     }
 
     > .menuOptions {
+        .date-mytasks {
+            display: flex;
+            justify-content: space-between;
+            
+            .my-tasks {
+                width: max-content;
+            }
+        }
+
         ul {
             margin-top: 1rem; 
             display: flex;
@@ -108,16 +117,6 @@ export const Menu = styled.div`
 
         > .hidden {
             display: none;
-        }
-
-        .myTasks {
-            display: none;
-            padding: 1rem;
-            animation: down .3s; 
-        } 
-            
-        .myTasks.visible {
-            display: block;
         }
 
         .options {
@@ -155,16 +154,6 @@ export const Menu = styled.div`
             }
            
             .hidden {
-                display: block;
-            }
-
-            .myTasks {
-                display: none;
-                padding: 1rem;
-                animation: down .3s; 
-            } 
-            
-            .myTasks.visible {
                 display: block;
             }
 

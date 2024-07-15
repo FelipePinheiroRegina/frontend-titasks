@@ -11,7 +11,7 @@ import { api } from '../../services/api'
 import { useNavigate } from "react-router-dom"
 
 export function HeaderTop() {
-    const { logOut, user, setOptionSelectedHeader } = useAuth()
+    const { logOut, user } = useAuth()
 
     const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder
     const navigate = useNavigate()
@@ -21,17 +21,18 @@ export function HeaderTop() {
         logOut()
     }
 
-    function handleChangeOptionSelect() {
-        setOptionSelectedHeader('profile')
+    function handleProfile() {
+        navigate('/profile')
+        sessionStorage.setItem('@optionMenuTitasks', 'profile')
     }
 
     return (
         <Container>
             <Avatar>
-                <Link to="/profile" onClick={handleChangeOptionSelect}>
+                <button onClick={handleProfile}>
                     <img src={avatarUrl} alt={user.name} />
-                </Link>
-            
+                </button>
+                    
                 <div>
                     <p>Bem-vindo,</p>
                     <strong>{user.name}</strong>
