@@ -36,7 +36,7 @@ export function CreateScheduled({ isOpen, onRequestClose }) {
             setScheduled('')
             setTimesReschedule(0)
             onRequestClose()
-            return alert(response.data.msg)
+            return alert('Criado com sucesso!')
 
         } catch (error) {
             return alert(error)

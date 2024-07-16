@@ -5,8 +5,6 @@ import { Header } from "../../components/Header"
 import { HeaderTop } from "../../components/HeaderTop"
 import { ButtonText } from "../../components/ButtonText"
 
-import media from "../../assets/binary.png"
-
 import { useParams, useNavigate } from "react-router-dom"
 import { useState, useEffect} from 'react'
 import { api } from "../../services/api"
@@ -40,11 +38,12 @@ export function SeeDocumentation() {
 
     const handleType = (src) => {
         const [, extension] = src.split('.')
-    
+        console.log(extension)
+        console.log(src)
         let type = 'unknown'
     
         // Definir listas de extensões de imagem e vídeo
-        const imageExtensions = ['jpeg', 'pjpeg', 'png', 'gif']
+        const imageExtensions = ['jpeg', 'pjpeg', 'png', 'gif', 'jpg']
         const videoExtensions = ['mp4', 'avi', 'mkv']
     
         // Verificar se a extensão pertence a imagem ou vídeo
