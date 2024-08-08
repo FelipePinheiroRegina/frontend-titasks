@@ -1,112 +1,96 @@
 import styled from "styled-components"
-import { FaCircle } from "react-icons/fa";
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
 
-export const Container = styled.button`
-    border: none;
+export const Container = styled.div`
     width: 100%;
+    padding: 8px;
+    box-shadow: 1px 2px 3px 2px black;
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+    cursor: pointer;
+
     display: flex;
     flex-direction: column;
-    cursor: pointer;
-    gap: 1rem;
-    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
-    opacity: ${({ $isTrue }) => $isTrue ? '0.5': 'transparent'};
-    color: ${({ theme }) => theme.COLORS.WHITE};
-    padding: 1.25rem;
-    border-radius: 0.5rem;
-    margin-bottom: 0.5rem;
+    gap: 8px;
 
-    .title-status {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        
-        h1 {
-            font-size: 1rem;
-        } 
-
-        .date {
-            display:  flex;
-            flex-direction: column;
-            place-items: flex-end;
-            gap: 0.5rem;
-           
-
-            span {
-                display: flex;
-                gap: 0.5rem;
-            }
-
-            div {
-                display: flex;
-                place-items: flex-end;
-                flex-direction: column;
-                gap: 0.5rem;
-                text-align: right;
-            }
-        }
-    }
- 
-    strong {
-        display: flex;
-        font-size: 1rem;
-        gap: 0.5rem;
-        align-items: center;
-        color: ${({ theme }) => theme.COLORS.GRAY_100};
-
-        img {
-            border-radius: 50%;
-            width: 1rem;
-            height: 1rem;
-        }
-    }
-
-    > span {
+    .status {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
-        font-size: 1rem;
+        gap: 6px;
 
-        svg {
-            color: ${({ theme }) => theme.COLORS.GREEN};
-        }
+        font-style: italic;
     }
 
-    .count-answers {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 1rem;
+    header h1 {
+        word-break: break-word;
+        white-space: normal; 
+        overflow-wrap: break-word; 
+        font-size: 1.2rem;
     }
 
-    .answer-container {
+    > .created-at {
         display: flex;
         flex-direction: row;
-        
-        flex-wrap: wrap; 
-        margin-left: 10px;
+        align-items: center;
+        gap: 8px;
+
         img {
-            margin-left: -0.62rem;
-            width: 1rem;
-            border-radius: 50%;
-        }      
+            width: 24px;
+            height: 24px;
+        }
     }
 
-    &:hover {
-        background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
+    > .date-at {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+
+        svg {
+            font-size: 24px;
+        }
+    }
+
+    > .count-answers {
+        margin-top: 8px;
+        border-top: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_700};
+
+        h3 {
+            margin-bottom: 8px;
+        }
+
+        .container-svg-and-answer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.2rem;
+
+            svg {
+                font-size: 24px;
+            }
+        }
+    }
+
+    > .answer-container {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+
+        div {
+            img {
+                width: 24px;
+            }
+
+            svg {
+                font-size: 24px;
+            }
+        }
+    }
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+        &:hover {
+            transform: translateX(3px);
+            transition: .2s ease-in-out;
+        }
     }
 `
-
-const getStatusColor = (status) => {
-    switch (status) {
-      case 'Fazer':
-        return '#FF859B'
-      case 'Fazendo':
-        return '#fefe00'
-      case 'Feito':
-        return `#5AE4A8`
-    }
-}
-
-export const StatusCircle = styled(FaCircle)`
-    color: ${({ status }) => getStatusColor(status)};
-`;

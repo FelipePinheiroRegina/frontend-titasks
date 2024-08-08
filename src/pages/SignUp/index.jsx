@@ -18,15 +18,20 @@ export function SignUp() {
 
     const navigate = useNavigate()
 
-    function handleSignUp() {
+    function handleSignUp(event) {
+        event.preventDefault()
+
         if(!name || !email || !password) {
             alert('Preencha todos os campos')
         }
 
         api.post('/user', {name, email, password})
         .then(() => {
-            alert("Usuário cadastrado com sucesso!")
-            navigate('/')
+            const isOk = confirm('Usuário cadastrado com sucesso, clique em OK para ser redirecionado para o login!')
+
+            if(isOk) {
+                navigate('/')
+            }
         })
         .catch(error => {
             if(error.response) {
@@ -39,7 +44,7 @@ export function SignUp() {
     
     return (
         <Container>
-            <Form>
+            <Form onSubmit={handleSignUp}>
                 <h1>TI TASKS</h1>
                 
                 <p>Aplicativo para salvar e gerenciar as terefas dos colaboradores de T.I da Patral Peças.</p>
@@ -51,13 +56,17 @@ export function SignUp() {
                     type='text'
                     icon={FiUser}
                     onChange={e => setName(e.target.value)}
+                    required
+                    minLength={6}
                 />
 
                 <Input 
                     placeholder='Email' 
-                    type='text'
+                    type='email'
                     icon={FiMail}
                     onChange={e => setEmail(e.target.value)}
+                    required
+                    minLength={6}
                 />
 
                 <Input 
@@ -65,13 +74,17 @@ export function SignUp() {
                     type='password'
                     icon={FiLock}
                     onChange={e => setPassword(e.target.value)}
+                    required
+                    minLength={6}
                 />
             
-                <Button title='Registrar' onClick={handleSignUp}/>
+                <Button title='Registrar' type="submit"/>
 
                 <Link to="/">
                     <ButtonText title='Já possui uma conta? Entrar'/>
                 </Link>
+
+                <footer>Ti Tasks v1.2 - Desenvolvedor Felipe Pinheiro Regina</footer>
             </Form>
 
             <Background/>

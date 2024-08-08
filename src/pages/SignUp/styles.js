@@ -40,10 +40,26 @@ export const Form = styled.form`
         font-size: 1.25rem;
     }
 
-    button {
-        margin-top: 1.5rem;
-        margin-bottom: 1.5rem;
+    > a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+
+        button {
+            width: max-content;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
     }
+
+    footer {
+        text-align: center;
+        font-size: 12px;
+        font-style: italic;
+        color: darkgray;
+    }
+    
 `
 
 export const Background = styled.div`

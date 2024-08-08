@@ -86,24 +86,22 @@ export const Menu = styled.div`
     margin: 1rem 0;
     font-weight: 400;
 
-    input[type="date"] {
-        background-color: transparent;
-        border: none;
-        color: ${({ theme }) => theme.COLORS.WHITE}; 
-    } 
-
-    input[type="date"]::-webkit-calendar-picker-indicator {
-        cursor: pointer;
-        filter: invert(0.8) brightness(200%) sepia(100%) saturate(000000%) hue-rotate(20deg);
-    }
-
     > .menuOptions {
         .date-mytasks {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 1.2rem;
+
+            > label {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
             
             .my-tasks {
                 width: max-content;
+                font-size: .8rem;
             }
         }
 
@@ -209,11 +207,13 @@ export const Search = styled.div`
 
 export const Content = styled.div`
     grid-area: content;
-
     padding-bottom: 5rem;
 
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
     h2 {
-        margin-bottom: 1rem;
         color: ${({ theme }) => theme.COLORS.GRAY_300};
         border-bottom: 0.1rem dashed ${({ theme }) => theme.COLORS.GRAY_300}; 
     }
@@ -242,6 +242,7 @@ export const Content = styled.div`
 
     @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
         padding: 0 2.5rem;
+        padding-bottom: 3rem;
         overflow-y: auto;
 
         h2 {
@@ -263,7 +264,7 @@ export const ButtonOptions = styled.button`
     height: 3rem;
     font-size: 1rem;
     background-color: ${({ theme }) => theme.COLORS.GREEN};
-    color: ${({ theme }) => theme.COLORS.BACKGORUND_900};
+    color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
     cursor: pointer;
     border: none;
     margin-bottom: .2rem;

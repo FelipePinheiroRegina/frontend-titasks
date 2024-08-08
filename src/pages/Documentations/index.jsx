@@ -1,11 +1,11 @@
-import { FiFilePlus, FiFile } from "react-icons/fi"
+import { FiFilePlus, FiFile, FiArrowLeft } from "react-icons/fi"
 
 import { Container, Content } from "./styles"
 import { HeaderTop } from '../../components/HeaderTop'
 import { Header } from '../../components/Header'
 import { DocumentationsPreview } from "../../components/DocumentationsPreview"
 import { useNavigate } from "react-router-dom"
-import { Button } from "../../components/Button"
+import { ButtonText } from "../../components/ButtonText"
 import { api } from "../../services/api"
 import { useEffect, useState } from "react"
 
@@ -52,6 +52,13 @@ export function Documentations() {
             < HeaderTop />
 
             <Content>
+                <ButtonText 
+                    onClick={handleBack}
+                    className="backDesk" 
+                    title="Voltar"
+                    icon={FiArrowLeft}
+                />
+
                 <div className="header">
                     <h1>Documentações</h1>
 
@@ -78,12 +85,6 @@ export function Documentations() {
                         />
                     ))}
                 </div>
-
-                <Button 
-                    onClick={handleBack}
-                    className="backDesk" 
-                    title="Voltar"
-                />
             </Content>
 
             < Header className="headerbot"/>

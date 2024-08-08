@@ -39,9 +39,24 @@ export const Form = styled.form`
         font-size: 1.25rem;
     }
 
-    button {
-        margin-top: 1.5rem;
-        margin-bottom: 1.5rem;
+    > a {
+        width: 100%;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+
+        button {
+            width: max-content; 
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+    }
+    
+    footer {
+        text-align: center;
+        font-size: 12px;
+        font-style: italic;
+        color: darkgray;
     }
 `
 

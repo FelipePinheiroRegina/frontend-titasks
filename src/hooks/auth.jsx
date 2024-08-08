@@ -6,18 +6,18 @@ export const AuthContext = createContext({})
 
 function AuthProvider({ children }) {
     const [ data, setData ] = useState({})
-    
+
     async function signIn({email, password}) {
         try {
             const res = await api.post('/session', {email, password})
             const { user, token } = res.data
-
+            alert(`Sucesso na autenticação, bem-vindo ao TI TASKS ${user.name}`)
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`
             setData({user, token})
 
-            localStorage.setItem('@titasks:user', JSON.stringify(user))
-            localStorage.setItem('@titasks:token', token)
-          
+            sessionStorage.setItem('@titasks:user', JSON.stringify(user))
+            sessionStorage.setItem('@titasks:token', token)
+
         } catch (error) {
             if(error.response) {
                 alert(error.response.data.message)
@@ -37,7 +37,7 @@ function AuthProvider({ children }) {
             } 
 
             await api.put('/user', user) 
-            localStorage.setItem("@titasks:user", JSON.stringify(user))
+            sessionStorage.setItem("@titasks:user", JSON.stringify(user))
             
             setData({user, token: data.token})
             alert('Perfil atualizado com sucesso!')
@@ -51,17 +51,19 @@ function AuthProvider({ children }) {
     }
 
     function logOut() {
-        localStorage.removeItem("@titasks:user")
-        localStorage.removeItem("@titasks:token")
+        sessionStorage.removeItem("@titasks:user")
+        sessionStorage.removeItem("@titasks:token")
         sessionStorage.removeItem('@filterScheduleTitasks')
         sessionStorage.removeItem('@optionMenuTitasks')
-        
+    
         setData({})
     }
 
     useEffect(() => {
-        const user = localStorage.getItem('@titasks:user')
-        const token = localStorage.getItem('@titasks:token')
+
+
+        const user = sessionStorage.getItem('@titasks:user')
+        const token = sessionStorage.getItem('@titasks:token')
         
         if(user && token) {
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`

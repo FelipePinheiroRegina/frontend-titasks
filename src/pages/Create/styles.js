@@ -36,6 +36,7 @@ export const Form = styled.div`
 
         img {
             height: 12.5rem;
+            width: 100%;
             margin: auto;
         }
 

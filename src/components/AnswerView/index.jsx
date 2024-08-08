@@ -1,6 +1,7 @@
 import { Container } from "./styles"
 import { api } from "../../services/api"
-import { FiClock, FiSearch } from "react-icons/fi"
+import { FiClock } from "react-icons/fi"
+import { IoOpen } from "react-icons/io5";
 import { Section } from "../Section"
 import avatarPlaceholder from "../../assets/avatar_placeholder.svg"
 
@@ -18,7 +19,7 @@ export function AnswerView({index, data, ...rest}){
         <Container {...rest}>
             <div className="details">
                 <div className="count">
-                    {index + 1} 
+                    <strong>{index + 1} </strong>
                 </div>
 
                 <span className="img-por-name">
@@ -28,7 +29,9 @@ export function AnswerView({index, data, ...rest}){
                         `${api.defaults.baseURL}/files/${data.avatar}`} alt={data.name} 
                     /> 
                     <span>Por </span>
-                    {data.name}
+                    <strong>
+                        {data.name}
+                    </strong>
                 </span>
 
                 <span className="created-at">
@@ -48,7 +51,7 @@ export function AnswerView({index, data, ...rest}){
                         className="print"
                     >
                         <img src={prints} alt="imagem do print" /> 
-                        <FiSearch size={25}/>
+                        <IoOpen  size={25}/>
                     </button>
                 
                 </Section>

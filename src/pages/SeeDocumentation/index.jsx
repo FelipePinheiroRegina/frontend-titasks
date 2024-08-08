@@ -142,7 +142,7 @@ export function SeeDocumentation() {
                     { steps &&
                         steps.map((step, index) => (
                             <div className="step" key={String(step.id)}>
-                                <p>Passo - {index + 2}</p>
+                                <p>Passo - {index + 1}</p>
                                 <p>{step.description}</p>
 
                                 { step.media &&

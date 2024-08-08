@@ -78,48 +78,34 @@ export const Content = styled.div`
         border-radius: 0.5rem;
         background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
 
-        .title-status {
+        .status {
            display: flex;
-           align-items: flex-start;
-           justify-content: space-between;
-
-           h1 {
-            font-size: 1.5rem;
-           }
-
-           margin-bottom: 1.875rem;
-
-           .status-date {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-                gap: 0.3rem;
-
-                .status{
-                    display: flex;
-                    align-items: center;
-                    gap: 0.5rem;
-                    padding-bottom: .3rem;
-                    border-bottom: .1rem dashed ${({ theme }) => theme.COLORS.BACKGROUND_700};
-                }
-
-                .date {
-                    padding-top: .3rem;
-                    display: flex;
-                    flex-direction: column;
-                    text-align: right;
-                    gap: 0.5rem;
-                }
-           }
+           align-items: center;
+           gap: 8px;
+           margin-bottom: .5rem;
         }
 
+        .status-date {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.3rem;
+
+            .date {
+                padding-top: .3rem;
+                display: flex;
+                flex-direction: column;
+                text-align: right;
+                gap: 0.5rem;
+            }
+        }
+        
         .information {
             display: flex;
             flex-direction: column;
             gap: .5rem;
             margin-bottom: 1rem;
             padding-bottom: .3rem;
-            border-bottom: .1rem dashed ${({ theme }) => theme.COLORS.BACKGROUND_700};
             
             .criado-por {
                 display: flex;
@@ -128,7 +114,8 @@ export const Content = styled.div`
 
                 img {
                     border-radius: 50%;
-                    width: 1rem;
+                    width: 1.5rem;
+                    height: 1.5rem;
                 }
             }
 
@@ -138,7 +125,7 @@ export const Content = styled.div`
                 gap: 0.5rem;
 
                 svg {
-                    color: ${({ theme }) => theme.COLORS.GREEN}
+                    color: ${({ theme }) => theme.COLORS.GREEN};
                 }     
             } 
 
@@ -148,16 +135,10 @@ export const Content = styled.div`
                 gap: 0.5rem;
 
                 svg {
-                    color: ${({ theme }) => theme.COLORS.RED}
+                    color: ${({ theme }) => theme.COLORS.RED};
                 }     
             } 
         }  
-
-        > p {
-            line-height: 1.2rem;
-
-            margin-bottom: 3.375rem;
-        }
 
         .image {
             position: relative;
@@ -168,7 +149,8 @@ export const Content = styled.div`
             
             img {
                 height: 12.5rem;
-                filter: brightness(0.2);
+                width: max-content;
+                filter: brightness(0.3);
             }
 
             svg {
@@ -176,7 +158,7 @@ export const Content = styled.div`
                 left: 50%;
                 top: 50%;
                 transform: translate(-50%, -50%);
-                color: ${({ theme }) => theme.COLORS.GREEN};
+                color: ${({ theme }) => theme.COLORS.WHITE};
             }
         }
     }
@@ -301,65 +283,69 @@ export const ModalStatus = styled.div`
 
 export const Modal = styled.div`
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    inset: 0;
 
     height: 100%;
     width: 100%;
-    z-index: 1;
+    z-index: 10;
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
 
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1.25rem;
-    padding: 0px 3.75rem;
+    justify-content: center;
 
-    button:nth-child(1) {
-        border: none;
-        background-color: transparent;
-        cursor: pointer;
-        color: ${({ theme }) => theme.COLORS.GREEN};
-        width: max-content;
-    }
+    > .container-modal {
+        width: 70%;
+        max-width: 600px;
+        margin-top: 50px;
 
-    > form {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
+        button:nth-child(1) {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            color: ${({ theme }) => theme.COLORS.GREEN};
+            width: max-content;
 
-        padding-bottom: 4rem;
-
-        section {
-            margin: 1.5rem 0;
+            margin-bottom: 16px;
         }
 
-        label {
+        > form {
             display: flex;
-            gap: 1.5rem;
-           
-            > button {
-                border: none;
-                background-color: transparent;
-                color: ${({ theme }) => theme.COLORS.WHITE};
-                cursor: pointer;
+            flex-direction: column;
+            gap: 0.5rem;
+
+            padding-bottom: 4rem;
+
+            section {
+                margin: 1.5rem 0;
             }
 
-            > svg {
-                cursor: pointer;
-            }
-        }
+            label {
+                display: flex;
+                gap: 1.5rem;
+            
+                > button {
+                    border: none;
+                    background-color: transparent;
+                    color: ${({ theme }) => theme.COLORS.WHITE};
+                    cursor: pointer;
+                }
 
-        input {
-           display: none;
-        }
-    
-        img {
-            height: 12.5rem;
-            margin: 1.5rem auto 0;
+                > svg {
+                    cursor: pointer;
+                }
+            }
+
+            input {
+            display: none;
+            }
+        
+            img {
+                height: 12.5rem;
+                margin: 1.5rem auto 0;
+            }
         }
     }
+    
 
     section {
         margin-bottom: 1.5rem;

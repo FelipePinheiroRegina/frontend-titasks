@@ -67,7 +67,7 @@ export function CreateMoreStepModal({ isOpen, onRequestClose, idDocument }) {
             if (error.response) {
                 alert(error.response.data.message);
             } else {
-                return alert('Não foi possível criar a nota');
+                return alert('Não foi possível criar o passo');
             }
         }
     }

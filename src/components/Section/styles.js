@@ -15,9 +15,17 @@ export const Container = styled.section`
 
         border-bottom: 0.1rem dashed ${({ theme }) => theme.COLORS.BACKGROUND_700};
     }
+    
+    h1 {
+        font-size: 1.5rem;
+        word-break: break-word;
+        white-space: normal; 
+        overflow-wrap: break-word; 
+    }
 
     > p {
         margin-bottom: .937rem;
+        line-height: 24px;
+        letter-spacing: 1px;
     }
-
 `

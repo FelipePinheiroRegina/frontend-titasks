@@ -26,9 +26,11 @@ export const Container = styled.div`
 export const Content = styled.div`
     grid-area: content;
     margin-top: 10rem;
-    
-    flex-wrap: nowrap;
-    
+
+    .backDesk {
+            display: none;
+    }
+
     > .header {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -80,23 +82,9 @@ export const Content = styled.div`
         }
     }
 
-    > .documentations {
+    .documentations {
         overflow-y: auto;
-        height: 30rem;
-    }
-
-    ::-webkit-scrollbar {
-        background-color: ${({ theme }) => theme.COLORS.BACKGROUND}; 
-        width: 1px;   
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background-color: ${({ theme }) => theme.COLORS.GREEN};
-        border-radius: 8px;
-    }
-
-    .backDesk {
-            display: none;
+        height: 400px;
     }
 
     @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
@@ -104,9 +92,11 @@ export const Content = styled.div`
         margin: 3rem auto;
 
         .backDesk {
-            display: block;
+            display: flex;
             width: max-content;
-            padding: 0 1rem;
+
+            color: ${({ theme }) => theme.COLORS.GREEN};
+            font-size: 1.2rem;
         }
     }
 `

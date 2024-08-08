@@ -15,12 +15,14 @@ export function SignIn(){
     const [ password, setPassword ] = useState('')
     const { signIn } = useAuth()
 
-    function handleSignIn() {
+    function handleSignIn(event) {
+        event.preventDefault()
+        
         signIn({email, password})
     }
     return (
         <Container>
-            <Form>
+            <Form onSubmit={handleSignIn}>
                 <h1>TI TASKS</h1>
 
                 <p>Aplicativo para salvar e gerenciar as terefas dos colaboradores de T.I da Patral Peças.</p>
@@ -43,7 +45,7 @@ export function SignIn(){
         
                 <Button 
                     title='Entrar' 
-                    onClick={handleSignIn}
+                    type="submit"
                 />
 
                 <Link to="/register">
@@ -51,8 +53,9 @@ export function SignIn(){
                         title="Não tem uma conta? Registrar-se" 
                     />
                 </Link>
+
+                <footer>Ti Tasks v1.2 - Desenvolvedor Felipe Pinheiro Regina</footer>
             </Form>
-            
             <Background/>
         </Container>
     )

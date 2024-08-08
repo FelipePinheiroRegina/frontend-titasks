@@ -25,8 +25,8 @@ export const Container = styled.div`
             align-items: center;
             justify-content: center;
 
-            width: 1rem;
-            height: 1rem;
+            width: 1.5rem;
+            height: 1.5rem;
             border-radius: 50%;
             background-color: ${({ theme }) => theme.COLORS.GREEN};
             color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
@@ -38,11 +38,12 @@ export const Container = styled.div`
             gap: 0.5rem;
 
             img {
-                height: 1rem;
+                height: 1.5rem;
                 border-radius: 50%;
             }
 
             svg {
+                font-size: 1.5rem;
                 color: ${({ theme }) => theme.COLORS.GREEN};
                 
             }
@@ -57,7 +58,8 @@ export const Container = styled.div`
 
         img {
             height: 12.5rem;
-            filter: brightness(0.2);
+            width: max-content;
+            filter: brightness(0.3);
             
         }
 
@@ -66,7 +68,7 @@ export const Container = styled.div`
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: ${({ theme }) => theme.COLORS.GREEN};
+            color: ${({ theme }) => theme.COLORS.WHITE};
         }
     }
 `

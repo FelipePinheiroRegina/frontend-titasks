@@ -1,6 +1,6 @@
-import { FiArrowLeft, FiClock, FiSearch, FiMessageSquare, FiX, FiRefreshCw, FiArrowUp  } from "react-icons/fi"
-import { StatusCircle } from "../../components/TaskPreview/styles"
+import { FiArrowLeft, FiClock, FiMessageSquare, FiX, FiRefreshCw, FiArrowUp  } from "react-icons/fi"
 import { LuImageOff, LuImagePlus } from "react-icons/lu";
+import { IoOpen } from "react-icons/io5";
 
 import { Container, Content, Modal, ModalStatus } from "./styles"
 
@@ -13,10 +13,12 @@ import { ButtonText } from "../../components/ButtonText"
 import { useParams, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { api } from "../../services/api"
+import { AnswerView } from "../../components/AnswerView"
+import { StatusTask } from "../../components/StatusTask"
+
 import avatarPlaceholder from '../../assets/avatar_placeholder.svg'
 import background from '../../assets/background.svg'
-import { AnswerView } from "../../components/AnswerView"
-import { useAuth } from "../../hooks/auth";
+
 
 export function DetailsTask() {
     const [ status, setStatus ] = useState('')
@@ -128,7 +130,7 @@ export function DetailsTask() {
         setUpdatedStatus(prevUpdated => !prevUpdated)
         setIsModalOpenStatus(false)
     }
-
+    
     useEffect(() => {
         async function fetchDetailsTask() {
             const response = await api.get(`/tasks/${id}`)
@@ -197,48 +199,34 @@ export function DetailsTask() {
                 }
 
                 <div className="task">
-                    <div className="title-status">
-                        <h1>{task.title}</h1>
-    
-                        <div className="status-date">
-                            <div className="status">
-                                {task.status} 
-                                <StatusCircle status={task.status} size={16}/>
-                            </div>
-                              
-                            {task.updated_at && 
-                                <div className="date">
-                                    <p>
-                                        Atualizado  
-                                    </p>
-
-                                    {task.updated_at}
-                                </div>
-                            }  
-                        </div>
+                    <div className="status">
+                        <strong>Status da tarefa:</strong><StatusTask status={task.status}/>
                     </div>
-    
+                     
                     <div className="information">
                         <div className="criado-por">
-                            <img src={avatarUrl} alt={task.name} />
-                            Por {task.name}
+                            <img src={avatarUrl} alt={task.name}/>
+                            Por<strong>{task.name}</strong>
                         </div>
     
                         <div className="created-at">
-                            <FiClock size={16}/>
+                            <FiClock size={24}/>
                             {task.created_at} - Criado
                         </div>
     
                         <div className="deadline">
-                            <FiClock size={16}/>
+                            <FiClock size={24}/>
                             {task.deadline} - Prazo
                         </div>
                     </div>
-    
-                    <p>
-                        {task.description}
-                    </p>
-    
+
+                    <Section title="Tarefa:">
+                        <h1>{task.title}</h1>
+                        <p>
+                            {task.description}
+                        </p>
+                    </Section>
+                    
                     {image && (
                         <Section title="Imagem">
                              <button
@@ -246,7 +234,7 @@ export function DetailsTask() {
                             className="image"
                             >
                             <img src={image} alt="Task related"/>
-                            <FiSearch size={25}/>
+                            <IoOpen size={25}/>
                             </button>
                         </Section>
                     )}
@@ -281,47 +269,46 @@ export function DetailsTask() {
 
                 {isModalOpen && (
                     <Modal>
-                        <button 
-                            onClick={closeModal}
-                        >
-                            <FiX size={24}/>
-                        </button>
+                        <div className="container-modal">
+                            <button
+                                onClick={closeModal}
+                            >
+                                <FiX size={24}/>
+                            </button>
 
-                        <Section title="Resposta"/>
-
-                        <form>
-                            <TextArea 
-                                placeholder="Insira a resposta aqui"
-                                onChange={e => setTextArea(e.target.value)}
-                            />
+                            <Section title="Resposta"/>
                             
-                            <Section title="Imagem">
-                                <p>Anexar imagem (Opcional)</p>
-                                <label htmlFor="prints">
-                                <LuImagePlus size={20}/>
-
-                                <button 
-                                    className="remove"
-                                    onClick={handleRemovePrints}
-                                >
-                                <LuImageOff size={20}/>
-                                </button> 
-
-                                <input 
-                                    id="prints" 
-                                    type="file" 
-                                    onChange={handleAddPrints}
+                            <form>
+                                <TextArea
+                                    placeholder="Insira a resposta aqui"
+                                    onChange={e => setTextArea(e.target.value)}
                                 />
-                                </label>
-
-                                <img src={prints ? prints : background} alt="Prints" /> 
-                            </Section>
-                        
-                            <Button
-                                onClick={handleCreateAnswer} 
-                                title="Enviar"
-                            />
-                        </form>
+                            
+                                <Section title="Imagem">
+                                    <p>Anexar imagem (Opcional)</p>
+                                    <label htmlFor="prints">
+                                    <LuImagePlus size={20}/>
+                                    <button
+                                        className="remove"
+                                        onClick={handleRemovePrints}
+                                    >
+                                    <LuImageOff size={20}/>
+                                    </button>
+                                    <input
+                                        id="prints"
+                                        type="file"
+                                        onChange={handleAddPrints}
+                                    />
+                                    </label>
+                                    <img src={prints ? prints : background} alt="Prints" />
+                                </Section>
+                            
+                                <Button
+                                    onClick={handleCreateAnswer}
+                                    title="Enviar"
+                                />
+                            </form>
+                        </div>
                     </Modal>
                 )}
             </Content>

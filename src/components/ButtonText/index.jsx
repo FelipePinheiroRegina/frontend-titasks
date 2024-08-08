@@ -1,13 +1,13 @@
 import { Container } from './styles'
 
-export function ButtonText({ title, isactive= false, ...rest}) {
+export function ButtonText({ title, icon: Icon, isactive= false, ...rest}) {
     return (
         <Container
             type='button'
             $isactive={isactive}
             {...rest}
         >
-            {title}
+            {title}{Icon && <Icon/>}
         </Container>
     )
 }

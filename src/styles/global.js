@@ -15,9 +15,15 @@ export default createGlobalStyle`
             font-size: 12px;
         }
     }
+    
+    h1, h2, strong {
+        font-family: "Josefin Sans", sans-serif;
+    }
 
     body, input, button, textarea {
-        font-family: "Josefin Sans", sans-serif;
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-style: normal;
     }
 
     body {

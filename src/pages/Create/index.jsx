@@ -5,7 +5,6 @@ import { Container, Form, Head, Title } from "./styles"
 
 import { Header } from "../../components/Header"
 import { Input } from "../../components/Input"
-import { ButtonText} from "../../components/ButtonText"
 import { Button } from "../../components/Button"
 import { Section } from "../../components/Section"
 import { TextArea } from "../../components/TextArea"
@@ -32,6 +31,10 @@ export function Create() {
         navigate(-1)
     }
 
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    }
+
     function handleAddImage(event) {
         const file = event.target.files[0];
         if (file) {
@@ -52,6 +55,8 @@ export function Create() {
             return alert('Preencha o título da tarefa!')
         }
 
+        const formattedTitle = capitalizeFirstLetter(title)
+       
         if(!description) {
             return alert('Preencha a descrição da tarefa!')
         }
@@ -65,10 +70,10 @@ export function Create() {
         }
   
         const deadline = `${date} ${time}`
-      
+    
         try {
             const form = new FormData();
-            form.append("title", title);
+            form.append("title", formattedTitle);
             form.append("description", description);
             form.append("deadline", deadline);
             form.append("status", status);
@@ -84,6 +89,7 @@ export function Create() {
             navigate(-1)
 
         } catch (error) {
+            console.log(error)
             if (error.response) {
                 alert(error.response.data.message);
             } else {
@@ -111,6 +117,7 @@ export function Create() {
                     type="text"
                     placeholder="Título"
                     onChange={e => setTitle(e.target.value)}
+                    maxLength={30}
                 />
 
                 <TextArea 
